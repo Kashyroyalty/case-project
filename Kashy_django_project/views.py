@@ -27,7 +27,7 @@ def insertData(request):
         colour = request.POST.get('colour')
         accessories = request.POST.get('accessories')
 
-        tify = Cases(phonetype=phonetype, material=casematerial, colour=colour,
+        tify = Cases(phonetype=phonetype, casematerial=casematerial, colour=colour,
                      accessories=accessories)
         tify.save()
         return redirect("")
