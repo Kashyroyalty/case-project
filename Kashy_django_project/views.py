@@ -27,10 +27,10 @@ def insertData(request):
         colour = request.POST.get('colour')
         accessories = request.POST.get('accessories')
 
-        tify = Cases(phonetype=phonetype, casematerial=casematerial, colour=colour,
-                     accessories=accessories)
-        tify.save()
-        return redirect("")
+        query = Cases(phonetype=phonetype, casematerial=casematerial, colour=colour,
+                      accessories=accessories)
+        query.save()
+        return redirect("/")
 
     return render(request, "index.html")
 
@@ -38,7 +38,14 @@ def insertData(request):
 def deleteData(request, id):
     d = Cases.objects.get(id=id)
     d.delete()
-    return redirect("")
+    return redirect("/")
+    return render(request, "index.html")
+
+
+def viewdata(request, id):
+    d = Cases.objects.get(id=id)
+    d.view()
+    return redirect("/")
     return render(request, "index.html")
 
 
@@ -57,7 +64,7 @@ def updateData(request, id):
         update_info.accessories = accessories
         update_info.save()
 
-        return redirect("")
+        return redirect("/")
 
     d = Cases.objects.get(id=id)
     context = {"d": d}
